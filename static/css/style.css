@@ -1,0 +1,17 @@
+/* style.css */
+body {
+    background: #f8f9fa;
+  }
+  
+  .card {
+    transition: transform 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .alert {
+    position: relative;
+    top: 10px;
+  }
+  

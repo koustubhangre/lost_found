@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Update Report</h2>
+<form method="POST" enctype="multipart/form-data">
+  <div class="form-group mb-3">
+    <label for="kind">Type</label>
+    <select name="kind" id="kind" class="form-control" required>
+      <option value="lost" {% if report.kind == 'lost' %}selected{% endif %}>Lost</option>
+      <option value="found" {% if report.kind == 'found' %}selected{% endif %}>Found</option>
+    </select>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="name">Item Name</label>
+    <input type="text" name="name" id="name" value="{{ report.name }}" class="form-control" required />
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" class="form-control">{{ report.description }}</textarea>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="date">Date (optional)</label>
+    <input type="date" name="date" id="date" value="{{ report.date.isoformat() if report.date else '' }}" class="form-control" />
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="location">Location</label>
+    <input type="text" name="location" id="location" value="{{ report.location }}" class="form-control" />
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="contact">Contact Info</label>
+    <input type="text" name="contact" id="contact" value="{{ report.contact }}" class="form-control" />
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="image">Replace Image (optional)</label>
+    <input type="file" name="image" id="image" class="form-control-file" />
+  </div>
+
+  {% if report.image %}
+    <div class="mb-3">
+      <label>Current Image:</label><br />
+      <img src="{{ url_for('static', filename='uploads/' ~ report.image) }}" height="150" />
+    </div>
+  {% endif %}
+
+  <button type="submit" class="btn btn-primary">Update Report</button>
+</form>
+{% endblock %}

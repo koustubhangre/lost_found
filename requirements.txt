@@ -1,0 +1,5 @@
+Flask==2.3.2
+mongoengine==0.27.0
+pymongo==4.8.0        # <-- pin to the last version with _check_name
+python-dotenv==1.0.0
+Werkzeug==2.3.7
